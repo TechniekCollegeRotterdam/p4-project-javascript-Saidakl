@@ -19,8 +19,11 @@ let circleTurn
 
 startGame()
 
+// Elke x wanneer je op deze button klikt gaat die startgame function doen
 restartButton.addEventListener('click', startGame)
 
+
+// Cirkelturn false zodat X begint. 
 function startGame() {
   circleTurn = false
   cellElements.forEach(cell => {
@@ -33,6 +36,8 @@ function startGame() {
   winningMessageElement.classList.remove('show')
 }
 
+// TARGETS DE CELL, KIJKT OF HET CIRKELS BEURT IS DAN CIRKEL OF ANDERS X
+// KIJKT OF ER IEMAND WINT
 function handleClick(e) {
   const cell = e.target
   const currentClass = circleTurn ? CIRCLE_CLASS : X_CLASS
@@ -47,6 +52,8 @@ function handleClick(e) {
   }
 }
 
+// Maakt de winning message wat de uitkomst is.
+
 function endGame(draw) {
   if (draw) {
     winningMessageTextElement.innerText = 'Draw!'
@@ -55,7 +62,7 @@ function endGame(draw) {
   }
   winningMessageElement.classList.add('show')
 }
-
+// Kijkt of de classlist X of O class heeft, dan is het true, = draw
 function isDraw() {
   return [...cellElements].every(cell => {
     return cell.classList.contains(X_CLASS) || cell.classList.contains(CIRCLE_CLASS)
@@ -66,10 +73,13 @@ function placeMark(cell, currentClass) {
   cell.classList.add(currentClass)
 }
 
+// NEEM CIRKEL TURN, MAAK HET X TURN (BEURT)
 function swapTurns() {
   circleTurn = !circleTurn
 }
 
+// DIT DOE JE NA SWAP TURNS, ZODAT JE WEET WIE ZIJN BEURT IS NU
+// REMOVED WIE ZIJN CLASS IS EN ZORGT DAT WANNEER JE HOVERT OP DE GOEIE BEURT BENT
 function setBoardHoverClass() {
   board.classList.remove(X_CLASS)
   board.classList.remove(CIRCLE_CLASS)
@@ -79,7 +89,9 @@ function setBoardHoverClass() {
     board.classList.add(X_CLASS)
   }
 }
-
+// Hier word gekeken of iemand wint tijdens elke beurt. 
+// Hij kijkt of die gelijk is met de winning combinations bovenaan
+// Als dat zo is wint X of O
 function checkWin(currentClass) {
   return WINNING_COMBINATIONS.some(combination => {
     return combination.every(index => {
