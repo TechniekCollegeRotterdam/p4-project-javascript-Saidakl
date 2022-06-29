@@ -181,3 +181,11 @@ body {
 .winning-message.show {
   display: flex;
 }
+
+.clickBOX  {
+  text-align: center;
+  justify-content: center;
+  display: flex;
+  font-size: 3rem;
+  padding: .25em .5em;
+}
